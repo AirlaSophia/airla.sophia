@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Welcome to The Liminal Archive — Airla Sophia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--bg: #101d30;
+--card: #1b2e4b;
+--accent: #2a4060;
+--gold: #d1a86b;
+--gold-hover: #e0bc88;
+--white: #f8f2e8;
+--muted: #8fa5be;
+--border: rgba(209,168,107,0.18);
+}
+
+body {
+background-color: var(--bg);
+color: var(--white);
+font-family: 'Cormorant Garamond', Georgia, serif;
+font-size: 19px;
+line-height: 1.85;
+}
+
+/* ── NAV ── */
+nav {
+position: sticky; top: 0; z-index: 100;
+background: rgba(16,29,48,0.97);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
+padding: 0 2rem;
+display: flex; align-items: center; justify-content: space-between;
+height: 64px;
+}
+.nav-logo {
+font-family: 'Cinzel', serif; font-size: 0.85rem;
+letter-spacing: 0.25em; color: var(--gold);
+text-decoration: none; text-transform: uppercase;
+}
+.nav-back {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.2em; color: var(--muted);
+text-decoration: none; text-transform: uppercase;
+display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;
+}
+.nav-back:hover { color: var(--gold-hover); }
+.nav-back::before { content: '←'; }
+
+/* ── POST HEADER ── */
+.post-header {
+max-width: 740px; margin: 0 auto;
+padding: 5rem 2rem 3rem; text-align: center;
+position: relative;
+}
+.post-header::before {
+content: ''; position: absolute; top: 0; left: 50%;
+transform: translateX(-50%);
+width: 1px; height: 3rem;
+background: linear-gradient(to bottom, transparent, var(--gold));
+}
+.post-category {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.3em; color: var(--gold);
+text-transform: uppercase; margin-bottom: 1.5rem; display: block;
+}
+.post-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.7rem, 4vw, 2.9rem);
+font-weight: 400; color: var(--white);
+letter-spacing: 0.05em; line-height: 1.3; margin-bottom: 1.25rem;
+}
+.post-subtitle {
+font-size: 1.15rem; font-style: italic;
+color: var(--muted); margin-bottom: 2rem;
+}
+.post-meta {
+display: flex; justify-content: center;
+align-items: center; gap: 1.5rem;
+}
+.post-date, .post-read-time {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase;
+}
+.meta-divider { width: 1px; height: 12px; background: var(--accent); }
+
+/* ── HERO IMAGE ── */
+.post-hero {
+max-width: 800px; margin: 2rem auto 0;
+padding: 0 2rem;
+}
+.post-hero img {
+width: 100%; border-radius: 3px;
+border: 1px solid var(--border);
+display: block;
+}
+/* Placeholder shown until image is added */
+.post-hero-placeholder {
+width: 100%; height: 360px;
+background: linear-gradient(135deg, var(--card) 0%, var(--accent) 100%);
+border: 1px solid var(--border); border-radius: 3px;
+display: flex; align-items: center; justify-content: center;
+font-family: 'Cinzel', serif; font-size: 0.65rem;
+letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase;
+}
+
+/* ── ORNAMENT ── */
+.ornament {
+text-align: center; padding: 2rem 0;
+color: var(--gold); font-size: 0.8rem;
+letter-spacing: 0.5em; opacity: 0.5;
+}
+
+/* ── ARTICLE ── */
+article {
+max-width: 680px; margin: 0 auto;
+padding: 0 2rem 5rem;
+}
+article p {
+margin-bottom: 1.75rem;
+color: #d4cdc4;
+font-size: 1.05rem;
+}
+article p:first-child {
+font-size: 1.2rem; color: var(--white);
+}
+article h2 {
+font-family: 'Cinzel', serif; font-size: 1rem;
+font-weight: 500; color: var(--white);
+letter-spacing: 0.1em; margin: 3rem 0 1.25rem;
+}
+article blockquote {
+border-left: 2px solid var(--gold);
+margin: 2.5rem 0; padding: 1rem 0 1rem 2rem;
+font-style: italic; color: var(--gold-hover);
+font-size: 1.2rem; line-height: 1.7;
+}
+article em { font-style: italic; color: var(--white); }
+
+/* ── PILLAR LIST ── */
+.pillars {
+background: var(--card);
+border: 1px solid var(--border);
+border-radius: 3px;
+padding: 2rem 2rem 1.5rem;
+margin: 2rem 0 2.5rem;
+}
+.pillars-label {
+font-family: 'Cinzel', serif; font-size: 0.58rem;
+letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--gold); margin-bottom: 1.25rem; display: block;
+}
+.pillar-item {
+display: flex; gap: 1rem; align-items: flex-start;
+margin-bottom: 1rem; padding-bottom: 1rem;
+border-bottom: 1px solid rgba(209,168,107,0.08);
+}
+.pillar-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.pillar-name {
+font-family: 'Cinzel', serif; font-size: 0.7rem;
+letter-spacing: 0.15em; text-transform: uppercase;
+color: var(--gold); min-width: 130px; padding-top: 0.15rem;
+}
+.pillar-desc {
+font-size: 0.9rem; font-style: italic;
+color: var(--muted); line-height: 1.6;
+}
+
+/* ── POST FOOTER ── */
+.post-end {
+max-width: 680px; margin: 0 auto;
+padding: 0 2rem 4rem;
+}
+.post-end-line {
+width: 60px; height: 1px; background: var(--gold);
+margin: 0 auto 3rem; opacity: 0.4;
+}
+.post-author { text-align: center; margin-bottom: 3rem; }
+.author-name {
+font-family: 'Cinzel', serif; font-size: 0.75rem;
+letter-spacing: 0.25em; color: var(--gold);
+text-transform: uppercase; display: block; margin-bottom: 0.5rem;
+}
+.author-bio {
+font-size: 0.9rem; font-style: italic; color: var(--muted);
+}
+
+/* ── CTA ── */
+.post-cta {
+background: var(--card);
+border: 1px solid var(--border);
+padding: 2.5rem; text-align: center; margin-bottom: 3rem;
+border-radius: 3px;
+}
+.post-cta h3 {
+font-family: 'Cinzel', serif; font-size: 0.9rem;
+letter-spacing: 0.12em; color: var(--white); margin-bottom: 0.75rem;
+}
+.post-cta p {
+font-size: 0.95rem; font-style: italic;
+color: var(--muted); margin-bottom: 1.5rem; line-height: 1.65;
+}
+.cta-btn {
+display: inline-block;
+font-family: 'Cinzel', serif; font-size: 0.65rem;
+letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--bg); background: var(--gold);
+padding: 0.85rem 2.25rem; text-decoration: none;
+border-radius: 2px; transition: background 0.2s;
+}
+.cta-btn:hover { background: var(--gold-hover); }
+
+.back-link {
+display: flex; justify-content: center;
+}
+.back-link a {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--muted); text-decoration: none;
+display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;
+}
+.back-link a:hover { color: var(--gold); }
+.back-link a::before { content: '←'; }
+
+footer {
+text-align: center; padding: 2.5rem;
+border-top: 1px solid var(--border); background: var(--bg);
+}
+footer p {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase;
+}
+footer a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 600px) {
+article, .post-end { padding-left: 1.25rem; padding-right: 1.25rem; }
+.post-header { padding: 4rem 1.25rem 2.5rem; }
+.post-hero { padding: 0 1.25rem; }
+.pillar-name { min-width: 100px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="index.html" class="nav-logo">Airla Sophia</a>
+<a href="blog.html" class="nav-back">The Archive</a>
+</nav>
+
+<header class="post-header">
+<span class="post-category">The Archive</span>
+<h1 class="post-title">Welcome to The Liminal Archive</h1>
+<p class="post-subtitle">A greeting from the threshold — and what you'll find here.</p>
+<div class="post-meta">
+<span class="post-date">April 26, 2026</span>
+<div class="meta-divider"></div>
+<span class="post-read-time">3 min read</span>
+</div>
+</header>
+
+<div class="post-hero">
+<img src="images/liminal-archive-hero.jpg" alt="A figure beneath a sweeping starry sky — the liminal threshold between worlds"/>
+</div>
+
+<div class="ornament">· · ·</div>
+
+<article>
+
+<p>Welcome. I'm glad you found your way here.</p>
+
+<p>This is The Liminal Archive — a space that exists, as I do, somewhere between worlds. The word <em>liminal</em> comes from the Latin <em>limen</em>, meaning threshold. It is the in-between place. The doorway. Not quite where you were, not yet where you're going. I've spent most of my life living there — and I've learned that the threshold is not something to rush through. It's where the most important things happen.</p>
+
+<p>This blog is where I write from that place. It is not a space for performance or polish. It is a space for truth — the kind that doesn't always have clean edges. The kind that asks something of you.</p>
+
+<blockquote>
+My whole life I was misread. I had to become the reader — the seer for the unseen.
+</blockquote>
+
+<p>What you'll find here are writings that mirror what I witness every day in my work as a psychic intuitive and spiritual consultant. Because in every reading I give — every session, every card pulled, every pattern I see in someone's energy field — the same essential themes keep showing themselves. The same questions keep surfacing. The same unseen forces keep shaping people's lives.</p>
+
+<p>I've organized those themes into five pillars. Think of them as the five territories of the inner life. Everything in this archive lives inside one of them.</p>
+
+<div class="pillars">
+<span class="pillars-label">What You'll Find Here</span>
+
+<div class="pillar-item">
+<span class="pillar-name">The Mask</span>
+<span class="pillar-desc">The faces we wear to survive — and what lives underneath them. On masking, identity, and the cost of being someone you're not.</span>
+</div>
+<div class="pillar-item">
+<span class="pillar-name">The Narrative</span>
+<span class="pillar-desc">The stories we tell about ourselves — and who told them to us first. On inherited beliefs, self-worth, and rewriting the script.</span>
+</div>
+<div class="pillar-item">
+<span class="pillar-name">The Field</span>
+<span class="pillar-desc">The invisible forces at work in your life — energy, attachment, ancestral patterns, and what you're carrying that isn't yours.</span>
+</div>
+<div class="pillar-item">
+<span class="pillar-name">The Way</span>
+<span class="pillar-desc">The path forward — on purpose, intuition, and what it looks like to stop forcing and start flowing.</span>
+</div>
+<div class="pillar-item">
+<span class="pillar-name">The Misread</span>
+<span class="pillar-desc">The bigger conversation — on neurodivergence, what the mental health system gets wrong, and who gets to be believed.</span>
+</div>
+</div>
+
+<p>These aren't just topics I write about. They're what I see in you when you sit across from me — whether in a tarot reading, an aura session, a soul reading, or a conversation about love, work, or what your life is supposed to mean. The patterns on this page are the same patterns I'm reading in your energy.</p>
+
+<p>So if something you read here resonates — if a post makes you stop and feel seen in a way you didn't expect — that's not a coincidence. That's the field doing what it does. And if you want to know how these patterns are specifically showing up in <em>your</em> life, that's exactly what a session with me is for.</p>
+
+<p>I'm here. The threshold is open. Come in.</p>
+
+</article>
+
+<section class="post-end">
+<div class="post-end-line"></div>
+
+<div class="post-author">
+<span class="author-name">Airla Sophia</span>
+<p class="author-bio">Psychic intuitive, author, and seer based in St. Petersburg, Florida.<br>My whole life I was misread. I had to become the reader.</p>
+</div>
+
+<div class="post-cta">
+<h3>See what the field is showing about your life.</h3>
+<p>Every reading I give moves through these same five territories. If something here resonated, there's likely more waiting for you in a session.</p>
+<a href="https://calendly.com/airlasophia" class="cta-btn">Book a Session</a>
+</div>
+
+<div class="back-link">
+<a href="blog.html">Return to The Archive</a>
+</div>
+</section>
+
+<footer>
+<p>© 2025 <a href="index.html">Airla Sophia</a> &nbsp;·&nbsp; <a href="https://calendly.com/airlasophia">Book a Session</a></p>
+</footer>
+
+</body>
+</html>
+
