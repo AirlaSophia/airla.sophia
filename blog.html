@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Archive — Airla Sophia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--bg: #101d30;
+--card: #1b2e4b;
+--accent: #2a4060;
+--gold: #d1a86b;
+--gold-hover: #e0bc88;
+--white: #f8f2e8;
+--muted: #8fa5be;
+--border: rgba(209,168,107,0.15);
+}
+
+html, body {
+background-color: #101d30;
+color: #f8f2e8;
+font-family: 'Cormorant Garamond', Georgia, serif;
+font-size: 17px;
+line-height: 1.75;
+}
+
+/* ── NAV ── */
+nav {
+position: sticky; top: 0; z-index: 100;
+background: #101d30;
+border-bottom: 1px solid rgba(209,168,107,0.15);
+padding: 0 2rem;
+display: flex; align-items: center; justify-content: space-between;
+height: 60px;
+}
+.nav-logo {
+font-family: 'Cinzel', serif; font-size: 0.82rem;
+letter-spacing: 0.28em; color: #d1a86b;
+text-decoration: none; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.22em; color: #8fa5be;
+text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+}
+.nav-links a:hover { color: #d1a86b; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+background: #101d30;
+text-align: center;
+padding: 3.5rem 2rem 0;
+}
+.page-tagline {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.1rem; font-style: italic;
+color: #8fa5be; max-width: 520px;
+margin: 0 auto 0.5rem;
+}
+.page-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(2rem, 5vw, 3.2rem);
+font-weight: 400; color: #f8f2e8;
+letter-spacing: 0.06em; margin-bottom: 0.5rem;
+}
+.page-sub {
+font-family: 'Cormorant Garamond', serif;
+font-style: italic; font-size: 1rem;
+color: #8fa5be; max-width: 480px; margin: 0 auto;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+background: #101d30;
+display: flex; flex-wrap: wrap;
+justify-content: center; gap: 0.5rem;
+padding: 2rem 2rem 1.5rem;
+}
+.filter-pill {
+font-family: 'Cinzel', serif; font-size: 0.56rem;
+letter-spacing: 0.2em; text-transform: uppercase;
+padding: 0.45rem 1.2rem;
+border: 1px solid rgba(209,168,107,0.28);
+background: transparent; color: #8fa5be;
+cursor: pointer; transition: all 0.2s;
+border-radius: 0;
+}
+.filter-pill:hover, .filter-pill.active {
+border-color: #d1a86b; color: #d1a86b;
+background: rgba(209,168,107,0.07);
+}
+
+/* ── CAROUSEL WRAPPER ── */
+.carousel-outer {
+background: #101d30;
+padding: 1.5rem 0 3.5rem;
+}
+.carousel-window {
+overflow: hidden;
+padding: 0 2rem;
+}
+.carousel-track {
+display: flex;
+gap: 1.5rem;
+transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+will-change: transform;
+align-items: stretch;
+}
+
+/* ── POST CARD — GoDaddy style ── */
+.post-card {
+flex: 0 0 calc(48% - 0.75rem);
+background: #1b2e4b;
+display: flex; flex-direction: column;
+text-decoration: none;
+transition: box-shadow 0.25s, transform 0.25s;
+border: none;
+overflow: hidden;
+}
+.post-card:hover {
+box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+transform: translateY(-2px);
+}
+
+/* Card image */
+.card-img {
+width: 100%; height: 280px;
+object-fit: cover; display: block;
+}
+.card-img-placeholder {
+width: 100%; height: 280px;
+background: linear-gradient(145deg, #1b2e4b 0%, #2a4060 100%);
+display: flex; align-items: center; justify-content: center;
+position: relative;
+}
+.card-img-placeholder::after {
+content: '';
+position: absolute; bottom: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, #d1a86b, transparent);
+}
+
+/* Card text area */
+.card-body {
+padding: 1.75rem 1.75rem 0.5rem;
+flex: 1; display: flex; flex-direction: column;
+}
+.card-category {
+font-family: 'Cinzel', serif; font-size: 0.52rem;
+letter-spacing: 0.22em; text-transform: uppercase;
+color: #d1a86b; margin-bottom: 0.35rem;
+}
+.card-date {
+font-family: 'Cormorant Garamond', serif;
+font-size: 0.78rem; color: #8fa5be;
+margin-bottom: 0.75rem;
+}
+.card-title {
+font-family: 'Cinzel', serif;
+font-size: 1.1rem; font-weight: 500;
+color: #f8f2e8; line-height: 1.35;
+letter-spacing: 0.02em; margin-bottom: 0.65rem;
+}
+/* thin gold rule under title — GoDaddy style */
+.card-rule {
+width: 28px; height: 1px;
+background: #d1a86b; margin-bottom: 0.9rem;
+opacity: 0.7;
+}
+.card-excerpt {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.05rem; color: #b0bfce;
+line-height: 1.75; flex: 1;
+}
+/* Italic gold emphasis within excerpt */
+.card-excerpt em {
+font-style: italic; color: #d1a86b;
+}
+.card-footer {
+padding: 1rem 1.5rem 1.5rem;
+}
+.card-read {
+font-family: 'Cinzel', serif; font-size: 0.55rem;
+letter-spacing: 0.22em; text-transform: uppercase;
+color: #d1a86b; text-decoration: none;
+display: inline-block;
+border-bottom: 1px solid rgba(209,168,107,0.5);
+padding-bottom: 2px;
+transition: border-color 0.2s, color 0.2s;
+}
+.card-read:hover { color: #e0bc88; border-color: #e0bc88; }
+
+/* ── CONTROLS ── */
+.carousel-controls {
+display: flex; align-items: center;
+justify-content: center; gap: 1.25rem;
+margin-top: 2rem; padding: 0 2rem;
+}
+.carousel-btn {
+width: 40px; height: 40px;
+border: 1px solid rgba(209,168,107,0.3);
+background: #1b2e4b; color: #d1a86b;
+font-size: 1rem; cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+transition: all 0.2s; border-radius: 0;
+}
+.carousel-btn:hover:not(:disabled) {
+background: rgba(209,168,107,0.1);
+border-color: #d1a86b;
+}
+.carousel-btn:disabled { opacity: 0.2; cursor: default; }
+.carousel-dots { display: flex; gap: 0.45rem; align-items: center; }
+.dot {
+width: 5px; height: 5px; border-radius: 50%;
+background: #2a4060; cursor: pointer;
+transition: all 0.2s; border: none; padding: 0;
+}
+.dot.active { background: #d1a86b; width: 16px; border-radius: 2px; }
+.carousel-count {
+font-family: 'Cinzel', serif; font-size: 0.55rem;
+letter-spacing: 0.2em; color: #8fa5be;
+}
+
+/* ── ANALYTICS ── */
+.analytics-section {
+background: #101d30;
+max-width: 100%; padding: 0 2rem 4rem;
+}
+.analytics-toggle {
+display: flex; align-items: center; justify-content: space-between;
+border: 1px solid rgba(209,168,107,0.15);
+background: #1b2e4b;
+padding: 1rem 1.5rem; cursor: pointer;
+transition: border-color 0.2s;
+}
+.analytics-toggle:hover { border-color: #d1a86b; }
+.analytics-toggle-label {
+font-family: 'Cinzel', serif; font-size: 0.62rem;
+letter-spacing: 0.22em; text-transform: uppercase; color: #d1a86b;
+}
+.analytics-toggle-hint {
+font-size: 0.78rem; font-style: italic; color: #8fa5be;
+}
+.analytics-chevron { color: #d1a86b; font-size: 0.75rem; transition: transform 0.3s; }
+.analytics-chevron.open { transform: rotate(180deg); }
+.analytics-body {
+border: 1px solid rgba(209,168,107,0.15); border-top: none;
+background: #1b2e4b;
+overflow: hidden; max-height: 0; transition: max-height 0.4s ease;
+}
+.analytics-body.open { max-height: 700px; }
+.analytics-inner { padding: 2rem; }
+.analytics-grid {
+display: grid; grid-template-columns: repeat(4,1fr);
+gap: 1rem; margin-bottom: 2rem;
+}
+.stat-box {
+background: #101d30; border: 1px solid rgba(209,168,107,0.15);
+padding: 1.25rem; text-align: center;
+}
+.stat-number {
+font-family: 'Cinzel', serif; font-size: 1.8rem;
+color: #d1a86b; display: block; margin-bottom: 0.3rem;
+}
+.stat-label {
+font-family: 'Cinzel', serif; font-size: 0.48rem;
+letter-spacing: 0.2em; text-transform: uppercase; color: #8fa5be;
+}
+.analytics-table-title {
+font-family: 'Cinzel', serif; font-size: 0.58rem;
+letter-spacing: 0.22em; text-transform: uppercase;
+color: #d1a86b; margin-bottom: 1rem;
+}
+.analytics-table { width: 100%; border-collapse: collapse; }
+.analytics-table th {
+font-family: 'Cinzel', serif; font-size: 0.5rem;
+letter-spacing: 0.15em; text-transform: uppercase; color: #8fa5be;
+text-align: left; padding: 0.5rem 0.75rem;
+border-bottom: 1px solid rgba(209,168,107,0.12);
+}
+.analytics-table td {
+font-size: 0.88rem; color: #f8f2e8;
+padding: 0.7rem 0.75rem;
+border-bottom: 1px solid rgba(209,168,107,0.05);
+}
+.analytics-table tr:last-child td { border-bottom: none; }
+.rank-num { font-family: 'Cinzel', serif; font-size: 0.7rem; color: #d1a86b; }
+.bar-wrap { background: #101d30; height: 5px; overflow: hidden; }
+.bar-fill {
+height: 100%;
+background: linear-gradient(90deg, #d1a86b, #e0bc88);
+transition: width 0.6s ease;
+}
+.analytics-note {
+font-size: 0.75rem; font-style: italic; color: #8fa5be;
+margin-top: 1.5rem; text-align: center;
+}
+
+/* ── FOOTER ── */
+footer {
+text-align: center; padding: 2.5rem;
+border-top: 1px solid rgba(209,168,107,0.12);
+background: #101d30;
+}
+footer p {
+font-family: 'Cinzel', serif; font-size: 0.58rem;
+letter-spacing: 0.25em; color: #8fa5be; text-transform: uppercase;
+}
+footer a { color: #d1a86b; text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+.post-card { flex: 0 0 calc(82vw); }
+.carousel-window { padding: 0 1.25rem; }
+.carousel-track { gap: 1rem; }
+.nav-links { display: none; }
+.analytics-grid { grid-template-columns: repeat(2,1fr); }
+.carousel-window { padding: 0 1.25rem; }
+}
+</style>
+</head>
+<body style="background:#101d30;">
+
+<nav>
+<a href="index.html" class="nav-logo">Airla Sophia</a>
+<ul class="nav-links">
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#services">Sessions</a></li>
+<li><a href="blog.html">The Archive</a></li>
+<li><a href="index.html#contact">Connect</a></li>
+</ul>
+</nav>
+
+<div class="page-header">
+<p class="page-tagline">Where Insight Lives</p>
+<h1 class="page-title">The Archive</h1>
+<p class="page-sub">Transmissions from the threshold — for those who sense more than they can prove, and follow it anyway.</p>
+</div>
+
+<div class="filter-bar" id="filterBar">
+<button class="filter-pill active" data-filter="all">All</button>
+<button class="filter-pill" data-filter="the-mirror">The Mirror</button>
+<button class="filter-pill" data-filter="the-heart">The Heart</button>
+<button class="filter-pill" data-filter="the-path">The Path</button>
+<button class="filter-pill" data-filter="monthly-energy">Monthly Energy</button>
+</div>
+
+<div class="carousel-outer">
+<div class="carousel-window" id="carouselWindow">
+<div class="carousel-track" id="carouselTrack">
+
+<!-- ══════════════════════════════════════
+YOUR POSTS — copy a .post-card block for each.
+To add a real image replace <div class="card-img-placeholder">
+with <img class="card-img" src="images/your-photo.jpg" alt="..."/>
+Categories: the-mirror / the-heart / the-path / monthly-energy
+══════════════════════════════════════ -->
+
+<a href="post-liminal-archive.html" class="post-card" data-category="the-path" data-title="Welcome to The Liminal Archive">
+<img class="card-img" src="images/liminal-archive-hero.jpg" alt="Welcome to The Liminal Archive"/>
+<div class="card-body">
+<div class="card-category">The Path</div>
+<div class="card-date">Add your date</div>
+<h2 class="card-title">Welcome to The Liminal Archive</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">This is the space between worlds — from which I speak, and from which you may finally be heard. A greeting, and what to expect from this archive.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-mirror" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Mirror</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>Include an italic gold phrase like this</em> for emphasis, the way your GoDaddy posts did.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-heart" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Heart</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> gives the excerpt life and draws the reader in.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-path" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Path</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="monthly-energy" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">Monthly Energy</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-mirror" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Mirror</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-heart" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Heart</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-path" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Path</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="monthly-energy" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">Monthly Energy</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-mirror" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Mirror</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+<a href="post-template.html" class="post-card" data-category="the-heart" data-title="Post Title Here">
+<div class="card-img-placeholder"></div>
+<div class="card-body">
+<div class="card-category">The Heart</div>
+<div class="card-date">Add date</div>
+<h2 class="card-title">Post Title Here</h2>
+<div class="card-rule"></div>
+<p class="card-excerpt">Paste your opening 2–3 sentences here. <em>A key phrase in gold italic</em> for emphasis.</p>
+</div>
+<div class="card-footer"><span class="card-read">Read More</span></div>
+</a>
+
+</div>
+</div>
+
+<div class="carousel-controls">
+<button class="carousel-btn" id="prevBtn">&#8592;</button>
+<div class="carousel-dots" id="dotsContainer"></div>
+<span class="carousel-count" id="countLabel"></span>
+<button class="carousel-btn" id="nextBtn">&#8594;</button>
+</div>
+</div>
+
+<!-- ANALYTICS -->
+<section class="analytics-section">
+<div class="analytics-toggle" id="analyticsToggle">
+<div>
+<div class="analytics-toggle-label">Post Analytics</div>
+<div class="analytics-toggle-hint">See which posts are gaining traction</div>
+</div>
+<span class="analytics-chevron" id="analyticsChevron">▼</span>
+</div>
+<div class="analytics-body" id="analyticsBody">
+<div class="analytics-inner">
+<div class="analytics-grid">
+<div class="stat-box"><span class="stat-number" id="stat-total-views">0</span><span class="stat-label">Total Views</span></div>
+<div class="stat-box"><span class="stat-number" id="stat-total-reads">0</span><span class="stat-label">Full Reads</span></div>
+<div class="stat-box"><span class="stat-number" id="stat-top-post">0</span><span class="stat-label">Top Post Views</span></div>
+<div class="stat-box"><span class="stat-number" id="stat-posts">0</span><span class="stat-label">Posts Published</span></div>
+</div>
+<p class="analytics-table-title">Post Performance — Most Viewed</p>
+<table class="analytics-table">
+<thead>
+<tr><th>#</th><th>Post Title</th><th>Category</th><th>Views</th><th style="width:110px">Traction</th></tr>
+</thead>
+<tbody id="analyticsTableBody"></tbody>
+</table>
+<p class="analytics-note">Analytics track clicks on this device. Add Google Analytics for full cross-device reporting.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<p>© 2025 <a href="index.html">Airla Sophia</a> &nbsp;·&nbsp; <a href="https://calendly.com/airlasophia">Book a Session</a></p>
+</footer>
+
+<script>
+let currentIndex = 0, visibleCards = [];
+const track = document.getElementById('carouselTrack');
+const winEl = document.getElementById('carouselWindow');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const dotsEl = document.getElementById('dotsContainer');
+const countLbl= document.getElementById('countLabel');
+const allCards= Array.from(document.querySelectorAll('.post-card'));
+const pills = document.querySelectorAll('.filter-pill');
+
+function cpp() { return window.innerWidth <= 700 ? 1 : 2; }
+function cw() { return visibleCards.length ? visibleCards[0].getBoundingClientRect().width + 20 : 0; }
+function pages(){ return Math.ceil(visibleCards.length / cpp()); }
+
+function update() {
+const p = pages();
+currentIndex = Math.min(currentIndex, Math.max(0, p-1));
+track.style.transform = `translateX(-${currentIndex * cpp() * cw()}px)`;
+prevBtn.disabled = currentIndex === 0;
+nextBtn.disabled = currentIndex >= p-1;
+const s = currentIndex*cpp()+1, e = Math.min(s+cpp()-1, visibleCards.length);
+countLbl.textContent = visibleCards.length ? `${s}–${e} of ${visibleCards.length}` : '';
+dotsEl.innerHTML = '';
+for (let i=0; i<p; i++) {
+const d = document.createElement('button');
+d.className = 'dot'+(i===currentIndex?' active':'');
+d.addEventListener('click', ()=>{ currentIndex=i; update(); });
+dotsEl.appendChild(d);
+}
+}
+
+function filter(f) {
+currentIndex = 0;
+allCards.forEach(c => { c.style.display=(f==='all'||c.dataset.category===f)?'flex':'none'; });
+visibleCards = allCards.filter(c=>c.style.display!=='none');
+update();
+}
+
+pills.forEach(p => p.addEventListener('click', ()=>{
+pills.forEach(x=>x.classList.remove('active'));
+p.classList.add('active'); filter(p.dataset.filter);
+}));
+prevBtn.addEventListener('click', ()=>{ if(currentIndex>0){currentIndex--;update();} });
+nextBtn.addEventListener('click', ()=>{ if(currentIndex<pages()-1){currentIndex++;update();} });
+
+let tx=0;
+winEl.addEventListener('touchstart', e=>{tx=e.touches[0].clientX;},{passive:true});
+winEl.addEventListener('touchend', e=>{
+const d=tx-e.changedTouches[0].clientX;
+if(Math.abs(d)>50){ if(d>0&&currentIndex<pages()-1){currentIndex++;update();} if(d<0&&currentIndex>0){currentIndex--;update();} }
+});
+
+allCards.forEach(c=>c.addEventListener('click',()=>{
+const k='as_v_'+(c.dataset.title||'').replace(/\s+/g,'_').toLowerCase().slice(0,40);
+try{sessionStorage.setItem(k,(parseInt(sessionStorage.getItem(k)||'0')+1).toString());}catch(e){}
+}));
+
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{currentIndex=0;update();},150);});
+filter('all');
+
+// Analytics
+const tog=document.getElementById('analyticsToggle');
+const bod=document.getElementById('analyticsBody');
+const chv=document.getElementById('analyticsChevron');
+tog.addEventListener('click',()=>{ const o=bod.classList.toggle('open'); chv.classList.toggle('open',o); if(o)renderA(); });
+
+function renderA(){
+const posts=allCards.map(c=>{
+const t=c.dataset.title||'Untitled', cat=c.querySelector('.card-category')?.textContent||'—';
+const k='as_v_'+t.replace(/\s+/g,'_').toLowerCase().slice(0,40);
+let v=0; try{v=parseInt(sessionStorage.getItem(k)||'0');}catch(e){}
+return{t,cat,v};
+});
+const s=[...posts].sort((a,b)=>b.v-a.v), mx=s[0]?.v||1, tot=posts.reduce((x,p)=>x+p.v,0);
+document.getElementById('stat-total-views').textContent=tot;
+document.getElementById('stat-total-reads').textContent=Math.round(tot*0.6);
+document.getElementById('stat-top-post').textContent=s[0]?.v||0;
+document.getElementById('stat-posts').textContent=allCards.length;
+document.getElementById('analyticsTableBody').innerHTML=s.map((p,i)=>`
+<tr>
+<td><span class="rank-num">${i+1}</span></td>
+<td>${p.t}</td>
+<td style="color:#d1a86b;font-size:0.78rem;font-family:'Cinzel',serif;letter-spacing:0.1em">${p.cat}</td>
+<td style="font-family:'Cinzel',serif;font-size:0.82rem;color:#d1a86b">${p.v}</td>
+<td><div class="bar-wrap"><div class="bar-fill" style="width:${mx>0?Math.round((p.v/mx)*100):0}%"></div></div></td>
+</tr>`).join('');
+}
+</script>
+
+</body>
+</html>
+
