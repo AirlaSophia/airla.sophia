@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Post Title — Airla Sophia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--deep-prussian: #101D30;
+--midnight-blue: #1B2E4B;
+--slate-indigo: #3A536D;
+--gold: #C9A84C;
+--gold-light: #E2C370;
+--cream: #F5F0E8;
+--text-light: #D4CFC6;
+--text-muted: #8A9BAE;
+}
+
+body {
+background-color: var(--deep-prussian);
+color: var(--cream);
+font-family: 'Cormorant Garamond', Georgia, serif;
+font-size: 19px;
+line-height: 1.8;
+}
+
+/* ── NAV ── */
+nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: rgba(16, 29, 48, 0.95);
+backdrop-filter: blur(8px);
+border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 64px;
+}
+
+.nav-logo {
+font-family: 'Cinzel', serif;
+font-size: 0.85rem;
+letter-spacing: 0.25em;
+color: var(--gold);
+text-decoration: none;
+text-transform: uppercase;
+}
+
+.nav-back {
+font-family: 'Cinzel', serif;
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+color: var(--text-muted);
+text-decoration: none;
+text-transform: uppercase;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+transition: color 0.2s;
+}
+
+.nav-back:hover { color: var(--gold-light); }
+.nav-back::before { content: '←'; }
+
+/* ── POST HEADER ── */
+.post-header {
+max-width: 740px;
+margin: 0 auto;
+padding: 5rem 2rem 3rem;
+text-align: center;
+position: relative;
+}
+
+.post-header::before {
+content: '';
+position: absolute;
+top: 0; left: 50%;
+transform: translateX(-50%);
+width: 1px;
+height: 3rem;
+background: linear-gradient(to bottom, transparent, var(--gold));
+}
+
+.post-category {
+font-family: 'Cinzel', serif;
+font-size: 0.6rem;
+letter-spacing: 0.3em;
+color: var(--gold);
+text-transform: uppercase;
+margin-bottom: 1.5rem;
+display: block;
+}
+
+.post-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.6rem, 4vw, 2.8rem);
+font-weight: 400;
+color: var(--cream);
+letter-spacing: 0.05em;
+line-height: 1.3;
+margin-bottom: 1.5rem;
+}
+
+.post-subtitle {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.15rem;
+font-style: italic;
+color: var(--text-muted);
+margin-bottom: 2rem;
+}
+
+.post-meta {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1.5rem;
+}
+
+.post-date, .post-read-time {
+font-family: 'Cinzel', serif;
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+color: var(--text-muted);
+text-transform: uppercase;
+}
+
+.meta-divider {
+width: 1px;
+height: 12px;
+background: var(--slate-indigo);
+}
+
+/* ── DIVIDER ── */
+.ornament {
+text-align: center;
+padding: 1.5rem 0;
+color: var(--gold);
+font-size: 0.8rem;
+letter-spacing: 0.5em;
+opacity: 0.6;
+}
+
+/* ── ARTICLE BODY ── */
+article {
+max-width: 680px;
+margin: 0 auto;
+padding: 0 2rem 5rem;
+}
+
+article p {
+margin-bottom: 1.6rem;
+color: var(--text-light);
+font-size: 1.05rem;
+}
+
+article p:first-child {
+font-size: 1.2rem;
+color: var(--cream);
+}
+
+article h2 {
+font-family: 'Cinzel', serif;
+font-size: 1.1rem;
+font-weight: 500;
+color: var(--cream);
+letter-spacing: 0.08em;
+margin: 3rem 0 1.2rem;
+}
+
+article h3 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.2rem;
+font-weight: 500;
+font-style: italic;
+color: var(--gold-light);
+margin: 2rem 0 1rem;
+}
+
+article blockquote {
+border-left: 2px solid var(--gold);
+margin: 2.5rem 0;
+padding: 1rem 0 1rem 2rem;
+font-style: italic;
+color: var(--gold-light);
+font-size: 1.15rem;
+line-height: 1.7;
+}
+
+article em {
+font-style: italic;
+color: var(--cream);
+}
+
+article strong {
+font-weight: 500;
+color: var(--cream);
+}
+
+/* ── POST FOOTER ── */
+.post-end {
+max-width: 680px;
+margin: 0 auto;
+padding: 0 2rem 4rem;
+}
+
+.post-end-line {
+width: 60px;
+height: 1px;
+background: var(--gold);
+margin: 0 auto 3rem;
+opacity: 0.4;
+}
+
+.post-author {
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.author-name {
+font-family: 'Cinzel', serif;
+font-size: 0.75rem;
+letter-spacing: 0.25em;
+color: var(--gold);
+text-transform: uppercase;
+display: block;
+margin-bottom: 0.5rem;
+}
+
+.author-bio {
+font-family: 'Cormorant Garamond', serif;
+font-size: 0.9rem;
+font-style: italic;
+color: var(--text-muted);
+}
+
+/* ── CTA ── */
+.post-cta {
+background: var(--midnight-blue);
+border: 1px solid rgba(201, 168, 76, 0.2);
+padding: 2.5rem;
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.post-cta h3 {
+font-family: 'Cinzel', serif;
+font-size: 0.85rem;
+letter-spacing: 0.15em;
+color: var(--cream);
+margin-bottom: 0.75rem;
+}
+
+.post-cta p {
+font-family: 'Cormorant Garamond', serif;
+font-size: 0.95rem;
+font-style: italic;
+color: var(--text-muted);
+margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+display: inline-block;
+font-family: 'Cinzel', serif;
+font-size: 0.65rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(--deep-prussian);
+background: var(--gold);
+padding: 0.8rem 2rem;
+text-decoration: none;
+transition: background 0.2s;
+}
+
+.cta-btn:hover { background: var(--gold-light); }
+
+/* ── BACK LINK ── */
+.back-link {
+display: flex;
+justify-content: center;
+}
+
+.back-link a {
+font-family: 'Cinzel', serif;
+font-size: 0.6rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(--text-muted);
+text-decoration: none;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+transition: color 0.2s;
+}
+
+.back-link a:hover { color: var(--gold); }
+.back-link a::before { content: '←'; }
+
+/* ── FOOTER ── */
+footer {
+text-align: center;
+padding: 2.5rem;
+border-top: 1px solid rgba(201, 168, 76, 0.12);
+margin-top: 2rem;
+}
+
+footer p {
+font-family: 'Cinzel', serif;
+font-size: 0.6rem;
+letter-spacing: 0.25em;
+color: var(--text-muted);
+text-transform: uppercase;
+}
+
+footer a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 600px) {
+article { padding: 0 1.25rem 4rem; }
+.post-header { padding: 4rem 1.25rem 2.5rem; }
+.post-end { padding: 0 1.25rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="index.html" class="nav-logo">Airla Sophia</a>
+<a href="blog.html" class="nav-back">The Archive</a>
+</nav>
+
+<header class="post-header">
+<!-- CHANGE THIS: category label -->
+<span class="post-category">The Misread</span>
+
+<!-- CHANGE THIS: your post title -->
+<h1 class="post-title">Your Post Title Goes Here</h1>
+
+<!-- CHANGE THIS: optional subtitle or pull quote from the post -->
+<p class="post-subtitle">A one-line distillation — the sentence that holds the whole piece.</p>
+
+<div class="post-meta">
+<!-- CHANGE THIS: date and read time -->
+<span class="post-date">June 2025</span>
+<div class="meta-divider"></div>
+<span class="post-read-time">5 min read</span>
+</div>
+</header>
+
+<div class="ornament">· · ·</div>
+
+<!-- ════════════════════════════════════════
+YOUR POST CONTENT GOES BELOW HERE
+Paste your text between the <article> tags.
+Use <p> for paragraphs, <h2> for section headings,
+<blockquote> for pull quotes.
+════════════════════════════════════════ -->
+<article>
+
+<p>This is your opening paragraph — paste it here. It will appear slightly larger than the rest of the post, signaling to the reader that they've entered something.</p>
+
+<p>Continue pasting your content paragraph by paragraph. Each paragraph goes inside its own &lt;p&gt; tag like this one.</p>
+
+<h2>If You Have a Section Heading</h2>
+
+<p>The text that follows a section heading goes here. You can have as many sections as your post needs.</p>
+
+<blockquote>
+Pull a powerful line from your post and put it here as a blockquote. It will render in gold italic — a moment of emphasis in the reading experience.
+</blockquote>
+
+<p>Continue the post from here. Keep going until you've pasted all your content. Then save the file with a new name — something like <em>post-attachment-styles.html</em> — so each post has its own page.</p>
+
+<p>That's all there is to it.</p>
+
+</article>
+
+<!-- ════════════════════════════════════════
+END OF POST CONTENT
+════════════════════════════════════════ -->
+
+<section class="post-end">
+<div class="post-end-line"></div>
+
+<div class="post-author">
+<span class="author-name">Airla Sophia</span>
+<p class="author-bio">Psychic intuitive, author, and seer based in St. Petersburg, Florida.<br>My whole life I was misread. I had to become the reader.</p>
+</div>
+
+<div class="post-cta">
+<h3>Ready to be seen?</h3>
+<p>Book a session — intuitive readings, soul work, and guidance for the unseen self.</p>
+<a href="https://calendly.com/airlasophia" class="cta-btn">Book a Session</a>
+</div>
+
+<div class="back-link">
+<a href="blog.html">Return to The Archive</a>
+</div>
+</section>
+
+<footer>
+<p>© 2025 <a href="index.html">Airla Sophia</a> &nbsp;·&nbsp; <a href="https://calendly.com/airlasophia">Book a Session</a></p>
+</footer>
+
+</body>
+</html>
+
