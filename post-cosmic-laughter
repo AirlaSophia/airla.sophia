@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cosmic Laughter — Airla Sophia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#101d30;--card:#1b2e4b;--accent:#2a4060;
+--gold:#d1a86b;--gold-h:#e0bc88;--white:#f8f2e8;
+--muted:#8fa5be;--border:rgba(209,168,107,0.15);
+}
+html,body{background:#101d30;color:#f8f2e8;font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.85}
+nav{position:sticky;top:0;z-index:100;background:rgba(16,29,48,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{font-family:"Cinzel",serif;font-size:0.82rem;letter-spacing:0.28em;color:var(--gold);text-decoration:none;text-transform:uppercase}
+.nav-back{font-family:"Cinzel",serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:0.5rem;transition:color 0.2s}
+.nav-back:hover{color:var(--gold-h)}
+.nav-back::before{content:"←"}
+.post-header{max-width:740px;margin:0 auto;padding:5rem 2rem 2.5rem;text-align:center;position:relative}
+.post-header::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:3rem;background:linear-gradient(to bottom,transparent,var(--gold))}
+.post-category{font-family:"Cinzel",serif;font-size:0.6rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1.25rem;display:block}
+.post-title{font-family:"Cinzel",serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;color:var(--white);letter-spacing:0.05em;line-height:1.3;margin-bottom:0.75rem}
+.post-subtitle{font-size:1.1rem;font-style:italic;color:var(--muted);margin-bottom:1.75rem}
+.post-meta{display:flex;justify-content:center;align-items:center;gap:1.5rem}
+.post-date,.post-read{font-family:"Cinzel",serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase}
+.meta-div{width:1px;height:12px;background:var(--accent)}
+.post-hero{max-width:800px;margin:2rem auto 0;padding:0 2rem}
+.post-hero img{width:100%;border-radius:2px;border:1px solid var(--border);display:block;max-height:500px;object-fit:cover}
+.ornament{text-align:center;padding:2rem 0;color:var(--gold);font-size:0.8rem;letter-spacing:0.5em;opacity:0.5}
+article{max-width:680px;margin:0 auto;padding:0 2rem 5rem}
+article p{margin-bottom:1.75rem;color:#d4cdc4;font-size:1.05rem}
+article p:first-child{font-size:1.18rem;color:var(--white)}
+article h2{font-family:"Cinzel",serif;font-size:1rem;font-weight:500;color:var(--white);letter-spacing:0.08em;margin:3rem 0 1.25rem}
+article h3{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:500;font-style:italic;color:var(--gold-h);margin:2rem 0 0.9rem}
+article blockquote{border-left:2px solid var(--gold);margin:2.5rem 0;padding:1rem 0 1rem 2rem;font-style:italic;color:var(--gold-h);font-size:1.15rem;line-height:1.7}
+article em{font-style:italic;color:var(--white)}
+article strong{font-weight:500;color:var(--white)}
+article hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+.post-end{max-width:680px;margin:0 auto;padding:0 2rem 4rem}
+.end-line{width:60px;height:1px;background:var(--gold);margin:0 auto 3rem;opacity:0.4}
+.author{text-align:center;margin-bottom:3rem}
+.author-name{font-family:"Cinzel",serif;font-size:0.75rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:0.5rem}
+.author-bio{font-size:0.9rem;font-style:italic;color:var(--muted)}
+.post-cta{background:var(--card);border:1px solid var(--border);padding:2.5rem;text-align:center;margin-bottom:3rem;border-radius:2px}
+.post-cta h3{font-family:"Cinzel",serif;font-size:0.88rem;letter-spacing:0.12em;color:var(--white);margin-bottom:0.75rem}
+.post-cta p{font-size:0.95rem;font-style:italic;color:var(--muted);margin-bottom:1.5rem;line-height:1.65}
+.cta-btn{display:inline-block;font-family:"Cinzel",serif;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:0.85rem 2.25rem;text-decoration:none;border-radius:2px;transition:background 0.2s}
+.cta-btn:hover{background:var(--gold-h)}
+.back-link{display:flex;justify-content:center}
+.back-link a{font-family:"Cinzel",serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;transition:color 0.2s}
+.back-link a:hover{color:var(--gold)}
+.back-link a::before{content:"←"}
+footer{text-align:center;padding:2.5rem;border-top:1px solid var(--border);background:#101d30}
+footer p{font-family:"Cinzel",serif;font-size:0.58rem;letter-spacing:0.25em;color:var(--muted);text-transform:uppercase}
+footer a{color:var(--gold);text-decoration:none}
+@media(max-width:600px){article,.post-end{padding-left:1.25rem;padding-right:1.25rem}.post-header{padding:4rem 1.25rem 2rem}.post-hero{padding:0 1.25rem}}
+</style>
+</head>
+<body>
+<nav>
+<a href="index.html" class="nav-logo">Airla Sophia</a>
+<a href="blog.html" class="nav-back">The Archive</a>
+</nav>
+<header class="post-header">
+<span class="post-category">The Path · Spiritual Growth</span>
+<h1 class="post-title">Cosmic Laughter</h1>
+<p class="post-subtitle">Why the Joke Is Actually Quite Serious</p>
+<div class="post-meta">
+<span class="post-date">June 3, 2026</span>
+<div class="meta-div"></div>
+<span class="post-read">9 min read</span>
+</div>
+</header>
+<div class="post-hero">
+<img src="images/img-cosmic-laughter.jpg" alt="Cosmic Laughter"/>
+</div>
+<div class="ornament">· · ·</div>
+<article>
+<p>There is a concept Ram Dass wrote about in <em>Be Here Now</em> called cosmic laughter. And I want to be careful with how I introduce it — because the first time I heard it, I thought it sounded like a spiritual excuse. Like someone who had never really suffered trying to make suffering sound cute.</p>
+<p>That is not what this is.</p>
+<p>Cosmic laughter is not what happens <em>instead</em> of the pain. It is what becomes possible on the other side of it. After you have sat in it. After you have stopped running from it. After it has changed you in ways you did not consent to and could not have predicted.</p>
+<h2>What Cosmic Laughter Actually Is</h2>
+<p>Imagine this. You have been carrying something heavy for a very long time. A story about who you are. A wound you have been trying to heal. And then one day — not because you did everything right, but because you have been broken open enough times that something in you stops resisting — you see it.</p>
+<p><em>You were always already here.</em></p>
+<blockquote>That is where the laugh comes from. Not from bypassing the pain. Not from rising above it. But from finally seeing it clearly — and recognizing, with a tenderness you could not have manufactured, that it was always pointing you home.</blockquote>
+<h2>You Are Not the First to Find This Place</h2>
+<p>Ram Dass described his guru Maharaj-ji as having a giggle that was not of this world. A <em>cosmic chuckle</em> — the pure delight of someone who could see the whole dance at once. And the Buddha's faint smile? That is not detachment. That is compassion so vast it has become tender. He smiles because he knows what you have not yet discovered — that you were never actually lost.</p>
+<h2>The Most Personal Joke of All</h2>
+<p>I spent years trying to fix myself. Not casually. Not halfheartedly. With everything I had. Because I had been given the message — in a thousand small and devastating ways — that the way I moved through the world was wrong. Too much. Too intense. Too sensitive. Too strange. Too <em>me</em>.</p>
+<p>I was neurodivergent in a world that had no language for what that meant. I just knew I was failing at something everyone else seemed to do effortlessly. Being normal. Being easy.</p>
+<blockquote>You cannot fix what was never broken. You can only exhaust yourself trying.</blockquote>
+<p>The moment I understood that my neurodivergence was not a defect but a <em>design</em> — something cracked open in me that I did not have words for. It was grief, first. Real, full-bodied grief. But then — on the other side of the grief — came the recognition. My neurodivergence was the thing that made me <em>me.</em></p>
+<p>Every quality I had spent years trying to suppress was the same quality that had been preparing me, all along, for the work I was born to do. <em>That</em> is the cosmic joke.</p>
+<h2>What Being Spiritual Actually Means</h2>
+<p>Being spiritual does not mean you are immune to suffering. What it means — what I have come to understand — is that you develop the capacity to hold two realities at once. Your physical incarnation: the body that hurts, the heart that breaks. And your soul — the witness. The part of you that watches without judgment. That has never, not once, believed you were broken.</p>
+<p>The witness does not love you <em>despite</em> your suffering. It does not love you <em>after</em> you have healed. It loves you <em>in the middle of it.</em></p>
+<blockquote>What blows your mind is you were here all the time. And it's such a cosmic joke — it's so funny you're struggling so hard to get here. — Ram Dass</blockquote>
+<p>You were never broken. You were never lost. You were never the problem that needed solving. You were always already home.</p>
+</article>
+<section class="post-end">
+<div class="end-line"></div>
+<div class="author">
+<span class="author-name">Airla Sophia</span>
+<p class="author-bio">Psychic intuitive, author, and seer based in St. Petersburg, Florida.<br>My whole life I was misread. I had to become the reader.</p>
+</div>
+<div class="post-cta">
+<h3>You were always already here.</h3>
+<p>If you're ready to stop running from what you are — and start returning to it — I'm here.</p>
+<a href="https://calendly.com/airlasophia" class="cta-btn">Book a Session</a>
+</div>
+<div class="back-link"><a href="blog.html">Return to The Archive</a></div>
+</section>
+<footer><p>© 2026 <a href="index.html">Airla Sophia</a> &nbsp;·&nbsp; <a href="https://calendly.com/airlasophia">Book a Session</a></p></footer>
+</body>
+</html>
