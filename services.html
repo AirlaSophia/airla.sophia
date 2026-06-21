@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sessions — Airla Sophia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--bg: #101d30;
+--card: #1b2e4b;
+--accent: #2a4060;
+--gold: #d1a86b;
+--gold-light: #e0bc88;
+--white: #f8f2e8;
+--muted: #8fa5be;
+--border: rgba(209,168,107,0.15);
+}
+
+html, body {
+background: #101d30;
+color: #f8f2e8;
+font-family: 'Cormorant Garamond', Georgia, serif;
+font-size: 18px;
+line-height: 1.75;
+}
+
+/* ── NAV ── */
+nav {
+position: sticky; top: 0; z-index: 100;
+background: rgba(16,29,48,0.97);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
+padding: 0 2rem;
+display: flex; align-items: center; justify-content: space-between;
+height: 62px;
+}
+.nav-logo {
+font-family: 'Cinzel', serif; font-size: 0.82rem;
+letter-spacing: 0.28em; color: var(--gold);
+text-decoration: none; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.22em; color: var(--muted);
+text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+text-align: center;
+padding: 5rem 2rem 3.5rem;
+background: #101d30;
+position: relative;
+}
+.page-header::before {
+content: '';
+position: absolute; top: 0; left: 50%;
+transform: translateX(-50%);
+width: 1px; height: 3rem;
+background: linear-gradient(to bottom, transparent, var(--gold));
+}
+.page-eyebrow {
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.35em; color: var(--gold);
+text-transform: uppercase; margin-bottom: 1rem;
+}
+.page-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(2rem, 5vw, 3.2rem);
+font-weight: 400; color: var(--white);
+letter-spacing: 0.07em; margin-bottom: 1rem;
+}
+.page-sub {
+font-family: 'Cormorant Garamond', serif;
+font-style: italic; font-size: 1.1rem;
+color: var(--muted); max-width: 500px; margin: 0 auto;
+}
+
+/* ── SERVICES GRID ── */
+.services-wrapper {
+max-width: 1160px;
+margin: 0 auto;
+padding: 1rem 2rem 5rem;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+}
+
+/* ── SERVICE CARD ── */
+.service-card {
+background: #1b2e4b;
+display: flex; flex-direction: column;
+border: 1px solid var(--border);
+transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+overflow: hidden;
+position: relative;
+}
+.service-card:hover {
+border-color: rgba(209,168,107,0.45);
+box-shadow: 0 12px 48px rgba(0,0,0,0.45);
+transform: translateY(-3px);
+}
+
+/* Signature element: a full-bleed image with a deep gradient overlay */
+.card-visual {
+position: relative;
+height: 240px;
+overflow: hidden;
+}
+.card-visual img {
+width: 100%; height: 100%;
+object-fit: cover; display: block;
+transition: transform 0.6s ease;
+}
+.service-card:hover .card-visual img { transform: scale(1.03); }
+
+/* Gradient overlay so text can sit on image if needed */
+.card-visual::after {
+content: '';
+position: absolute; inset: 0;
+background: linear-gradient(to bottom, transparent 40%, rgba(16,29,48,0.85) 100%);
+}
+
+/* Image placeholder */
+.card-visual-placeholder {
+width: 100%; height: 100%;
+background: linear-gradient(145deg, #1b2e4b 0%, #2a4060 100%);
+display: flex; align-items: center; justify-content: center;
+}
+.placeholder-glyph {
+font-family: 'Cinzel', serif;
+font-size: 3rem; color: rgba(209,168,107,0.15);
+letter-spacing: 0.2em;
+}
+
+/* Price tag sits over the image bottom-right */
+.card-price-badge {
+position: absolute;
+bottom: 1rem; right: 1rem;
+z-index: 2;
+font-family: 'Cinzel', serif;
+font-size: 0.7rem; letter-spacing: 0.15em;
+color: var(--bg);
+background: var(--gold);
+padding: 0.35rem 0.85rem;
+text-transform: uppercase;
+}
+
+/* Card body */
+.card-content {
+padding: 1.75rem 1.75rem 1rem;
+flex: 1; display: flex; flex-direction: column;
+}
+.card-label {
+font-family: 'Cinzel', serif; font-size: 0.55rem;
+letter-spacing: 0.28em; text-transform: uppercase;
+color: var(--gold); margin-bottom: 0.6rem;
+}
+.card-name {
+font-family: 'Cinzel', serif;
+font-size: 1.35rem; font-weight: 400;
+color: var(--white); letter-spacing: 0.04em;
+line-height: 1.25; margin-bottom: 0.6rem;
+}
+.card-rule {
+width: 32px; height: 1px;
+background: var(--gold); opacity: 0.6;
+margin-bottom: 1.1rem;
+}
+.card-desc {
+font-family: 'Cormorant Garamond', serif;
+font-size: 0.97rem; color: #a8bac8;
+line-height: 1.75; flex: 1;
+}
+.card-desc em {
+font-style: italic; color: var(--white);
+}
+
+/* Duration note */
+.card-duration {
+font-family: 'Cinzel', serif; font-size: 0.52rem;
+letter-spacing: 0.2em; text-transform: uppercase;
+color: var(--muted); margin-top: 1rem;
+}
+
+/* CTA */
+.card-cta {
+padding: 1.25rem 1.75rem 1.75rem;
+}
+.card-btn {
+display: inline-block;
+font-family: 'Cinzel', serif; font-size: 0.6rem;
+letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--gold);
+border: 1px solid rgba(209,168,107,0.4);
+padding: 0.7rem 1.75rem;
+text-decoration: none;
+transition: all 0.2s;
+background: transparent;
+cursor: pointer;
+}
+.card-btn:hover {
+background: rgba(209,168,107,0.08);
+border-color: var(--gold);
+color: var(--gold-light);
+}
+
+/* ── FIELD SESSION — full width, featured ── */
+.service-card.featured {
+grid-column: 1 / -1;
+flex-direction: row;
+}
+.service-card.featured .card-visual {
+width: 400px; flex-shrink: 0; height: auto;
+}
+.service-card.featured .card-visual::after {
+background: linear-gradient(to right, transparent 60%, rgba(16,29,48,0.9) 100%);
+}
+.service-card.featured .card-content {
+padding: 2.25rem 2.25rem 1rem;
+}
+.service-card.featured .card-name {
+font-size: 1.7rem;
+}
+.service-card.featured .card-desc {
+font-size: 1.02rem;
+}
+.service-card.featured .card-price-badge {
+bottom: auto; top: 1rem; right: 1rem;
+}
+
+/* ── TAROT CARD — dual pricing ── */
+.price-duo {
+display: flex; gap: 1rem; margin-top: 1.25rem;
+}
+.price-option {
+flex: 1;
+border: 1px solid var(--border);
+padding: 0.9rem 1rem;
+text-align: center;
+transition: border-color 0.2s, background 0.2s;
+text-decoration: none;
+display: block;
+}
+.price-option:hover {
+border-color: var(--gold);
+background: rgba(209,168,107,0.06);
+}
+.price-option-duration {
+font-family: 'Cinzel', serif; font-size: 0.52rem;
+letter-spacing: 0.2em; text-transform: uppercase;
+color: var(--muted); display: block; margin-bottom: 0.35rem;
+}
+.price-option-amount {
+font-family: 'Cinzel', serif; font-size: 1.3rem;
+color: var(--gold); display: block; margin-bottom: 0.35rem;
+}
+.price-option-book {
+font-family: 'Cinzel', serif; font-size: 0.5rem;
+letter-spacing: 0.2em; text-transform: uppercase;
+color: var(--muted);
+border-bottom: 1px solid rgba(209,168,107,0.3);
+padding-bottom: 1px;
+}
+
+/* ── NOTE AT BOTTOM ── */
+.sessions-note {
+max-width: 1160px; margin: 0 auto;
+padding: 0 2rem 4rem;
+text-align: center;
+}
+.sessions-note p {
+font-style: italic; color: var(--muted);
+font-size: 0.9rem; max-width: 540px; margin: 0 auto;
+}
+.sessions-note a {
+color: var(--gold); text-decoration: none;
+border-bottom: 1px solid rgba(209,168,107,0.3);
+}
+
+/* ── FOOTER ── */
+footer {
+text-align: center; padding: 2.5rem;
+border-top: 1px solid var(--border);
+background: #101d30;
+}
+footer p {
+font-family: 'Cinzel', serif; font-size: 0.58rem;
+letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase;
+}
+footer a { color: var(--gold); text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+.services-wrapper { grid-template-columns: 1fr; }
+.service-card.featured { flex-direction: column; }
+.service-card.featured .card-visual { width: 100%; height: 240px; }
+.service-card.featured .card-visual::after {
+background: linear-gradient(to bottom, transparent 40%, rgba(16,29,48,0.85) 100%);
+}
+}
+@media (max-width: 580px) {
+.nav-links { display: none; }
+.services-wrapper { padding: 1rem 1.25rem 4rem; gap: 1.25rem; }
+.page-header { padding: 4rem 1.25rem 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="index.html" class="nav-logo">Airla Sophia</a>
+<ul class="nav-links">
+<li><a href="index.html#about">About</a></li>
+<li><a href="services.html">Sessions</a></li>
+<li><a href="blog.html">The Archive</a></li>
+<li><a href="index.html#contact">Connect</a></li>
+</ul>
+</nav>
+
+<header class="page-header">
+<p class="page-eyebrow">Airla Sophia</p>
+<h1 class="page-title">Sessions</h1>
+<p class="page-sub">Every session is a mirror. Every reading is a door. Choose what you're ready for.</p>
+</header>
+
+<div class="services-wrapper">
+
+<!-- ── THE INQUIRY ── -->
+<div class="service-card">
+<div class="card-visual">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/John_William_Waterhouse_-_The_Crystal_Ball.JPG/784px-John_William_Waterhouse_-_The_Crystal_Ball.JPG" alt="The Crystal Ball by John William Waterhouse, 1902" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+<span class="card-price-badge">$45</span>
+</div>
+<div class="card-content">
+<span class="card-label">A Focused Look</span>
+<h2 class="card-name">The Inquiry</h2>
+<div class="card-rule"></div>
+<p class="card-desc">
+Something is weighing on you — a situation, a relationship, a decision you can't seem to make. In The Inquiry, you share what's on your mind and I look beneath it. I see what the energy is revealing, what pattern is at work, what's been sitting just out of reach. <em>Not a full excavation — but enough to see what's there and what it means.</em> A starting point, or a moment of clarity on its own.
+</p>
+<span class="card-duration">A focused session · $45</span>
+</div>
+<div class="card-cta">
+<a href="https://calendly.com/airlasophia" class="card-btn">Book The Inquiry</a>
+</div>
+</div>
+
+<!-- ── THE TAROT ── -->
+<div class="service-card">
+<div class="card-visual">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/John_William_Waterhouse_-_Consulting_the_Oracle_-_Christie%27s.jpg/1280px-John_William_Waterhouse_-_Consulting_the_Oracle_-_Christie%27s.jpg" alt="Consulting the Oracle by John William Waterhouse, 1884" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+</div>
+<div class="card-content">
+<span class="card-label">Intuitive Card Reading</span>
+<h2 class="card-name">The Tarot</h2>
+<div class="card-rule"></div>
+<p class="card-desc">
+A Tarot reading with me is a healing session as much as it is a reading. I can quickly tell you what is underneath your situation — <em>what is behind the actions of others, what you haven't been able to see.</em> It is a reflective experience. It is honest and revealing. And I will tell you the truth, even when it is difficult.
+</p>
+<div class="price-duo">
+<a href="https://calendly.com/airlasophia" class="price-option">
+<span class="price-option-duration">30 Minutes</span>
+<span class="price-option-amount">$60</span>
+<span class="price-option-book">Book Now</span>
+</a>
+<a href="https://calendly.com/airlasophia" class="price-option">
+<span class="price-option-duration">60 Minutes</span>
+<span class="price-option-amount">$120</span>
+<span class="price-option-book">Book Now</span>
+</a>
+</div>
+</div>
+</div>
+
+<!-- ── THE FIELD SESSION — featured full width ── -->
+<div class="service-card featured">
+<div class="card-visual">
+<img src="images/field-session.jpg" alt="The Love Which Moves the Sun and Stars — The Field Session" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+<span class="card-price-badge">$175</span>
+</div>
+<div class="card-content">
+<span class="card-label">Deep Diagnostic Reading</span>
+<h2 class="card-name">The Field Session</h2>
+<div class="card-rule"></div>
+<p class="card-desc">
+Something in your life keeps repeating. A relationship that follows the same arc. A door that won't open no matter how hard you push. A feeling you can't name but can't escape.<br><br>
+In The Field Session, I see the energetic blockages that are keeping you stuck — and I trace them back to their source. <em>The blockage comes from a pattern. The pattern comes from a wound.</em> And sometimes that wound is part of something much larger, playing out across your life without your knowing.<br><br>
+I work with whatever the field calls for — Tarot, Charm Casting, I Ching, Runes, and direct intuitive sight. The tools follow the field, not the other way around. The goal is not just to see what's there. <em>It's to help you break through it — and find your way back to freedom and flow.</em>
+</p>
+<span class="card-duration">Full session · $175</span>
+</div>
+<div class="card-cta">
+<a href="https://calendly.com/airlasophia" class="card-btn">Book The Field Session</a>
+</div>
+</div>
+
+</div>
+
+<div class="sessions-note">
+<p>Not sure which session is right for you? <a href="index.html#contact">Send me a message</a> and I'll help you find the right fit. Mediumship is available on request.</p>
+</div>
+
+<footer>
+<p>© 2025 <a href="index.html">Airla Sophia</a> &nbsp;·&nbsp; <a href="https://calendly.com/airlasophia">Book a Session</a></p>
+</footer>
+
+</body>
+</html>
+
