@@ -52,7 +52,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:22px 48px; di
 /* ABOUT */
 .threshold { background:var(--prussian); position:relative; overflow:hidden; }
 .threshold::before { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 55% 60% at 8% 50%,rgba(58,83,109,0.16) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 92% 40%,rgba(27,46,75,0.28) 0%,transparent 65%); }
-.threshold-inner { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:100px 56px 130px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.threshold-inner { position:relative; z-index:1; max-width:1000px; margin:0 auto; padding:80px 48px 100px; display:grid; grid-template-columns:420px 1fr; gap:56px; align-items:start; }
 .threshold-photo-wrap { position:relative; }
 .threshold-photo-wrap::before { content:""; position:absolute; top:20px; left:20px; right:-20px; bottom:-20px; border:1px solid rgba(58,83,109,0.42); pointer-events:none; }
 .threshold-photo-wrap::after { content:""; position:absolute; inset:-1px; border:1px solid rgba(192,158,72,0.10); pointer-events:none; z-index:3; }
@@ -183,7 +183,7 @@ footer::before { content:""; position:absolute; inset:0; pointer-events:none; ba
 .footer-copy { font-size:11px; letter-spacing:0.14em; color:rgba(245,238,220,0.16); }
 
 /* REVEAL */
-.reveal { opacity:0; transform:translateY(24px); transition:opacity .9s ease,transform .9s ease; }
+.reveal { opacity:0; transform:translateY(12px); transition:opacity .6s ease,transform .6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
 /* MOBILE */
@@ -191,6 +191,15 @@ footer::before { content:""; position:absolute; inset:0; pointer-events:none; ba
   .sessions-grid { grid-template-columns:1fr; }
   .session-art { height:240px; }
   .scroll-card { flex:0 0 260px; }
+}
+/* Sessions responsive */
+@media (max-width:860px) {
+  #sessions > div:nth-child(2) { grid-template-columns:1fr !important; }
+  #sessions div[style*="flex-direction:row"] { flex-direction:column !important; }
+  #sessions div[style*="width:400px"] { width:100% !important; height:240px; }
+}
+@media (max-width:600px) {
+  #sessions { padding:60px 20px 80px !important; }
 }
 @media (max-width:768px) {
   nav { padding:18px 24px; justify-content:center; }
@@ -923,8 +932,93 @@ footer::before { content:""; position:absolute; inset:0; pointer-events:none; ba
 
 <div class="gold-break"></div>
 
-       THE ARCHIVE — SECTION START
-  ══════════════════════════════════════ -->
+<div class="gold-break"></div>
+
+
+<!-- SESSIONS SECTION -->
+<section id="sessions" style="background:#101d30; padding:80px 48px 100px; position:relative;">
+  <div style="text-align:center; margin-bottom:3.5rem; position:relative;">
+    <div style="width:1px;height:2.5rem;background:linear-gradient(to bottom,transparent,#d1a86b);margin:0 auto 1.5rem;"></div>
+    <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.35em;text-transform:uppercase;color:#d1a86b;margin-bottom:0.75rem;">Sacred Work</p>
+    <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:#f8f2e8;letter-spacing:0.07em;margin-bottom:0.75rem;">Sessions</h2>
+    <p style="font-style:italic;color:#8fa5be;font-size:1rem;max-width:480px;margin:0 auto;">Every session is a mirror. Every reading is a door. Choose what you're ready for.</p>
+    <div style="width:40px;height:1px;background:#d1a86b;opacity:0.5;margin:1.5rem auto 0;"></div>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
+
+    <!-- THE INQUIRY -->
+    <div style="background:#1b2e4b;border:1px solid rgba(209,168,107,0.15);display:flex;flex-direction:column;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s;" onmouseover="this.style.borderColor='rgba(209,168,107,0.45)';this.style.boxShadow='0 12px 48px rgba(0,0,0,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(209,168,107,0.15)';this.style.boxShadow='none';this.style.transform='translateY(0)'">
+      <div style="position:relative;height:220px;overflow:hidden;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/John_William_Waterhouse_-_The_Crystal_Ball.JPG/784px-John_William_Waterhouse_-_The_Crystal_Ball.JPG" alt="The Inquiry" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(16,29,48,0.85) 100%);"></div>
+        <span style="position:absolute;bottom:1rem;right:1rem;z-index:2;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.15em;color:#101d30;background:#d1a86b;padding:0.35rem 0.85rem;text-transform:uppercase;">$45</span>
+      </div>
+      <div style="padding:1.75rem 1.75rem 1rem;flex:1;display:flex;flex-direction:column;">
+        <span style="font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:#d1a86b;margin-bottom:0.6rem;display:block;">A Focused Look</span>
+        <h3 style="font-family:'Cinzel',serif;font-size:1.35rem;font-weight:400;color:#f8f2e8;letter-spacing:0.04em;margin-bottom:0.6rem;">The Inquiry</h3>
+        <div style="width:32px;height:1px;background:#d1a86b;opacity:0.6;margin-bottom:1.1rem;"></div>
+        <p style="font-size:0.97rem;color:#a8bac8;line-height:1.75;flex:1;">Something is weighing on you — a situation, a relationship, a decision you can't seem to make. I see what the energy is revealing, what pattern is at work, what's been sitting just out of reach. <em style="font-style:italic;color:#f8f2e8;">Not a full excavation — but enough to see what's there and what it means.</em></p>
+      </div>
+      <div style="padding:1.25rem 1.75rem 1.75rem;">
+        <a href="https://calendly.com/airlasophia" style="display:inline-block;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#d1a86b;border:1px solid rgba(209,168,107,0.4);padding:0.7rem 1.75rem;text-decoration:none;transition:all 0.2s;">Book The Inquiry</a>
+      </div>
+    </div>
+
+    <!-- THE TAROT -->
+    <div style="background:#1b2e4b;border:1px solid rgba(209,168,107,0.15);display:flex;flex-direction:column;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s;" onmouseover="this.style.borderColor='rgba(209,168,107,0.45)';this.style.boxShadow='0 12px 48px rgba(0,0,0,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(209,168,107,0.15)';this.style.boxShadow='none';this.style.transform='translateY(0)'">
+      <div style="position:relative;height:220px;overflow:hidden;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/John_William_Waterhouse_-_Consulting_the_Oracle_-_Christie%27s.jpg/1280px-John_William_Waterhouse_-_Consulting_the_Oracle_-_Christie%27s.jpg" alt="The Tarot" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(16,29,48,0.85) 100%);"></div>
+      </div>
+      <div style="padding:1.75rem 1.75rem 1rem;flex:1;display:flex;flex-direction:column;">
+        <span style="font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:#d1a86b;margin-bottom:0.6rem;display:block;">Intuitive Card Reading</span>
+        <h3 style="font-family:'Cinzel',serif;font-size:1.35rem;font-weight:400;color:#f8f2e8;letter-spacing:0.04em;margin-bottom:0.6rem;">The Tarot</h3>
+        <div style="width:32px;height:1px;background:#d1a86b;opacity:0.6;margin-bottom:1.1rem;"></div>
+        <p style="font-size:0.97rem;color:#a8bac8;line-height:1.75;flex:1;">A Tarot reading with me is a healing session as much as it is a reading. <em style="font-style:italic;color:#f8f2e8;">I will tell you what is behind the actions of others, what you haven't been able to see.</em> It is honest and revealing. And I will tell you the truth, even when it is difficult.</p>
+        <div style="display:flex;gap:1rem;margin-top:1.25rem;">
+          <a href="https://calendly.com/airlasophia" style="flex:1;border:1px solid rgba(209,168,107,0.15);padding:0.9rem 1rem;text-align:center;text-decoration:none;display:block;">
+            <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:#8fa5be;display:block;margin-bottom:0.35rem;">30 Minutes</span>
+            <span style="font-family:'Cinzel',serif;font-size:1.3rem;color:#d1a86b;display:block;margin-bottom:0.35rem;">$60</span>
+            <span style="font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:#8fa5be;border-bottom:1px solid rgba(209,168,107,0.3);padding-bottom:1px;">Book Now</span>
+          </a>
+          <a href="https://calendly.com/airlasophia" style="flex:1;border:1px solid rgba(209,168,107,0.15);padding:0.9rem 1rem;text-align:center;text-decoration:none;display:block;">
+            <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:#8fa5be;display:block;margin-bottom:0.35rem;">60 Minutes</span>
+            <span style="font-family:'Cinzel',serif;font-size:1.3rem;color:#d1a86b;display:block;margin-bottom:0.35rem;">$120</span>
+            <span style="font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:#8fa5be;border-bottom:1px solid rgba(209,168,107,0.3);padding-bottom:1px;">Book Now</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE FIELD SESSION - full width -->
+    <div style="background:#1b2e4b;border:1px solid rgba(209,168,107,0.15);display:flex;flex-direction:row;overflow:hidden;grid-column:1/-1;transition:border-color 0.3s,box-shadow 0.3s;" onmouseover="this.style.borderColor='rgba(209,168,107,0.45)';this.style.boxShadow='0 12px 48px rgba(0,0,0,0.45)';" onmouseout="this.style.borderColor='rgba(209,168,107,0.15)';this.style.boxShadow='none';">
+      <div style="position:relative;width:400px;flex-shrink:0;overflow:hidden;">
+        <img src="field-session.jpg" alt="The Field Session" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(16,29,48,0.9) 100%);"></div>
+        <span style="position:absolute;top:1rem;right:1rem;z-index:2;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.15em;color:#101d30;background:#d1a86b;padding:0.35rem 0.85rem;text-transform:uppercase;">$175</span>
+      </div>
+      <div style="padding:2.25rem;flex:1;display:flex;flex-direction:column;">
+        <span style="font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:#d1a86b;margin-bottom:0.6rem;display:block;">Deep Diagnostic Reading</span>
+        <h3 style="font-family:'Cinzel',serif;font-size:1.7rem;font-weight:400;color:#f8f2e8;letter-spacing:0.04em;margin-bottom:0.6rem;">The Field Session</h3>
+        <div style="width:32px;height:1px;background:#d1a86b;opacity:0.6;margin-bottom:1.1rem;"></div>
+        <p style="font-size:1rem;color:#a8bac8;line-height:1.75;flex:1;">Something in your life keeps repeating. A relationship that follows the same arc. A door that won't open no matter how hard you push. A feeling you can't name but can't escape.<br><br>In The Field Session, I see the energetic blockages that are keeping you stuck — and I trace them back to their source. <em style="font-style:italic;color:#f8f2e8;">The blockage comes from a pattern. The pattern comes from a wound.</em> I work with whatever the field calls for — Tarot, Charm Casting, I Ching, Runes, and direct intuitive sight. <em style="font-style:italic;color:#f8f2e8;">The goal is not just to see what's there. It's to help you break through it.</em></p>
+        <div style="margin-top:1.5rem;">
+          <a href="https://calendly.com/airlasophia" style="display:inline-block;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#d1a86b;border:1px solid rgba(209,168,107,0.4);padding:0.7rem 1.75rem;text-decoration:none;">Book The Field Session</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:2.5rem;">
+    <p style="font-style:italic;color:#8fa5be;font-size:0.9rem;max-width:540px;margin:0 auto;">Not sure which session is right for you? <a href="#connect" style="color:#d1a86b;text-decoration:none;border-bottom:1px solid rgba(209,168,107,0.3);">Send me a message</a> and I'll help you find the right fit. Mediumship is available on request.</p>
+  </div>
+</section>
+
+
+<div class="gold-break"></div>
+
   <div id="archive" class="archive-starfield">
 
     <div class="starfield-overlay"></div>
@@ -1120,7 +1214,7 @@ footer::before { content:""; position:absolute; inset:0; pointer-events:none; ba
 
   <!-- ══════════════════════════════════════
        SIP & SEE — MONTHLY EVENT
-  ══════════════════════════════════════ -->
+
   <section id="events" class="event-section">
 
     <div class="section-header">
