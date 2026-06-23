@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airla Sophia</title>
+    <title>Airla Sophia | The Liminal Archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { 
@@ -22,7 +22,6 @@
             --slate: #3a536d;   
             --gold: #c9a84c; 
             --gold-lt: #e2c371; 
-            --pale: #f0dfa0; 
             --cream: #f5eedc; 
             --cream-dim: rgba(245,238,220,0.72); 
             --white-soft: #fbf9f5; 
@@ -33,6 +32,7 @@
             background: var(--prussian); 
             color: var(--cream); 
             overflow-x: hidden; 
+            line-height: 1.6;
         }
 
         /* NAVIGATION */
@@ -42,11 +42,19 @@
             left: 0; 
             right: 0; 
             z-index: 100; 
-            padding: 22px 48px; 
+            padding: 24px 48px; 
             display: flex; 
-            justify-content: flex-end; 
+            justify-content: space-between; 
             align-items: center; 
-            background: linear-gradient(to bottom, rgba(16,29,48,0.88) 0%, transparent 100%); 
+            background: linear-gradient(to bottom, rgba(16,29,48,0.95) 0%, transparent 100%); 
+        }
+
+        .logo {
+            font-family: "Cinzel", serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            text-transform: uppercase;
         }
         
         .nav-links { 
@@ -57,7 +65,7 @@
         
         .nav-links a { 
             font-family: "Cinzel", serif; 
-            font-size: 0.9rem; 
+            font-size: 0.85rem; 
             letter-spacing: 0.18em; 
             color: var(--cream); 
             text-decoration: none; 
@@ -72,7 +80,7 @@
         /* HERO SECTION */
         .hero { 
             position: relative; 
-            min-height: 100vh; 
+            min-height: 80vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -84,32 +92,31 @@
         .hero-bg { 
             position: absolute; 
             inset: 0; 
-            background-color: var(--prussian); 
             background-image: radial-gradient(circle at center, var(--midnight) 0%, var(--prussian) 100%); 
             z-index: -1; 
         }
         
         .hero-title { 
             font-family: "Cinzel", serif; 
-            font-size: 3.5rem; 
+            font-size: 4rem; 
             font-weight: 400; 
-            letter-spacing: 0.2em; 
+            letter-spacing: 0.25em; 
             color: var(--gold); 
             text-transform: uppercase; 
-            margin-bottom: 10px; 
+            margin-bottom: 15px; 
         }
         
         .hero-subtitle { 
-            font-size: 1.5rem; 
+            font-size: 1.6rem; 
             font-style: italic; 
             color: var(--cream-dim); 
             letter-spacing: 0.05em; 
         }
 
-        /* FEATURED FLYER SECTION */
-        .event-container { 
-            padding: 100px 24px; 
-            max-width: 1200px; 
+        /* MONTHLY EVENT FLYER */
+        .event-section { 
+            padding: 60px 24px; 
+            max-width: 1100px; 
             margin: 0 auto; 
             text-align: center; 
         }
@@ -120,16 +127,16 @@
             letter-spacing: 0.15em; 
             color: var(--gold); 
             text-transform: uppercase; 
-            margin-bottom: 48px; 
+            margin-bottom: 40px; 
         }
 
-        .flyer-display { 
+        .flyer-card { 
             margin: 0 auto; 
-            max-width: 650px; 
+            max-width: 550px; 
             background: var(--midnight); 
             padding: 24px; 
             border: 1px solid rgba(201, 168, 76, 0.2); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
         }
 
         .flyer-image { 
@@ -140,21 +147,175 @@
         }
 
         .event-details { 
-            margin-top: 24px; 
+            margin-top: 20px; 
         }
 
         .event-details h3 { 
             font-family: "Cinzel", serif; 
-            font-size: 1.4rem; 
+            font-size: 1.3rem; 
             letter-spacing: 0.1em; 
             color: var(--cream); 
             margin-bottom: 8px; 
         }
 
-        .event-details p { 
-            font-size: 1.1rem; 
-            color: var(--cream-dim); 
-            line-height: 1.6; 
+        /* CAROUSEL CONTROLS & TRACK */
+        .carousel-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+            position: relative;
+        }
+
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .carousel-arrows {
+            display: flex;
+            gap: 15px;
+        }
+
+        .arrow-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .arrow-btn:hover {
+            background: var(--gold);
+            color: var(--prussian);
+        }
+
+        .blog-wrapper {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Hide standard scrollbar */
+        }
+
+        .blog-wrapper::-webkit-scrollbar {
+            display: none; /* Hide Chrome/Safari scrollbar */
+        }
+
+        .blog-track {
+            display: flex;
+            gap: 30px;
+            padding-bottom: 20px;
+        }
+
+        /* BLOG CARDS */
+        .blog-card {
+            min-width: 350px;
+            max-width: 350px;
+            background: var(--midnight);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .blog-card h3 {
+            font-family: "Cinzel", serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-card p {
+            font-size: 1.05rem;
+            color: var(--cream-dim);
+            margin-bottom: 20px;
+        }
+
+        .read-btn {
+            font-family: "Cinzel", serif;
+            font-size: 0.85rem;
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            align-self: flex-start;
+            padding-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .read-btn:hover {
+            color: var(--gold);
+        }
+
+        /* POPUP MODALS */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 20, 33, 0.95);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--prussian);
+            border: 1px solid var(--gold);
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--gold);
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .modal-content h2 {
+            font-family: "Cinzel", serif;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-content p {
+            font-size: 1.15rem;
+            color: var(--cream);
+            margin-bottom: 15px;
         }
 
         /* FOOTER */
@@ -171,39 +332,127 @@
 </head>
 <body>
 
+    <!-- NAVIGATION -->
     <nav>
+        <div class="logo">Airla Sophia</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#events">Events</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#archive">Archive</a></li>
         </ul>
     </nav>
 
     <main id="home">
+        <!-- HERO SECTION -->
         <section class="hero">
             <div class="hero-bg"></div>
             <h1 class="hero-title">Airla Sophia</h1>
             <p class="hero-subtitle">Curated Gatherings & Visual Artistry</p>
         </section>
 
-        <section id="events" class="event-container">
+        <!-- MONTHLY EVENT SECTION -->
+        <section id="events" class="event-section">
             <h2 class="section-title">Monthly Event</h2>
-            <div class="flyer-display">
-                <!-- Waterhouse paintings successfully removed. Now hosting your localized monthly asset. -->
+            <div class="flyer-card">
                 <img src="sip-and-see-flyer.jpg" alt="Sip and See Event Flyer" class="flyer-image">
                 <div class="event-details">
                     <h3>Sip &amp; See Showcase</h3>
-                    <p>Join us for our signature monthly convergence of classical ambiance, brilliant discourse, and fine curation.</p>
+                    <p>Join us for our signature monthly convergence of beautiful atmospheres, deep conversations, and artistic curation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG / ARCHIVE CAROUSEL SECTION -->
+        <section id="archive" class="carousel-container">
+            <div class="carousel-header">
+                <h2 class="section-title" style="margin-bottom: 0;">The Liminal Archive</h2>
+                <div class="carousel-arrows">
+                    <button class="arrow-btn prev-arrow" aria-label="Previous posts">&#8249;</button>
+                    <button class="arrow-btn next-arrow" aria-label="Next posts">&#8250;</button>
+                </div>
+            </div>
+
+            <div class="blog-wrapper">
+                <div class="blog-track">
+                    
+                    <!-- Card 1: Welcome -->
+                    <div class="blog-card">
+                        <h3>Welcome to the Liminal Archive</h3>
+                        <p>An introduction into our world, intentional thought practices, and creative framework interpretations...</p>
+                        <a href="#welcome-popup" class="read-btn">Read More</a>
+                    </div>
+
+                    <!-- Card 2: Limerence -->
+                    <div class="blog-card">
+                        <h3>Limerence</h3>
+                        <p>An exploration into psychological focus, emotional attachment echoes, and visual storytelling interpretations...</p>
+                        <!-- FIXED: This now properly targets the limerence-popup instead of welcome -->
+                        <a href="#limerence-popup" class="read-btn">Read More</a>
+                    </div>
+
+                    <!-- Card 3: Future Thought (Placeholder to demonstrate scroll) -->
+                    <div class="blog-card">
+                        <h3>The Creative Subconscious</h3>
+                        <p>Delving deep beneath surface aesthetics to establish timeless branding symbols and narrative arcs...</p>
+                        <a href="#subconscious-popup" class="read-btn">Read More</a>
+                    </div>
+
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- POPUP MODAL 1: WELCOME -->
+    <div id="welcome-popup" class="modal">
+        <div class="modal-content">
+            <a href="#archive" class="close-modal">&times;</a>
+            <h2>Welcome to the Liminal Archive</h2>
+            <p>This is where your complete "Welcome to the Liminal Archive" essay goes. You can safely add as many paragraphs here as you would like, and the window will scroll elegantly.</p>
+            <p>The space explores visual archetypes, psychological dynamics, and how classical imagery sets standard foundational human themes across history.</p>
+        </div>
+    </div>
+
+    <!-- POPUP MODAL 2: LIMERENCE -->
+    <div id="limerence-popup" class="modal">
+        <div class="modal-content">
+            <a href="#archive" class="close-modal">&times;</a>
+            <h2>Limerence</h2>
+            <p>This is where your complete "Limerence" writing goes! It is now fully connected to its own standalone pop-up screen.</p>
+            <p>You can add your specialized analysis on emotional bonds, visual narrative tracking, or thematic artwork breakdowns directly within these text rows.</p>
+        </div>
+    </div>
+
+    <!-- POPUP MODAL 3: SUBCONSCIOUS -->
+    <div id="subconscious-popup" class="modal">
+        <div class="modal-content">
+            <a href="#archive" class="close-modal">&times;</a>
+            <h2>The Creative Subconscious</h2>
+            <p>This is an optional space for your next archival log entry or think-piece detailing aesthetics, design balance, and grand millennial structure.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Airla Sophia. All rights reserved.</p>
     </footer>
 
+    <!-- JAVASCRIPT: ARROW FUNCTIONALITY REPAIR -->
+    <script>
+        const prevArrow = document.querySelector('.prev-arrow');
+        const nextArrow = document.querySelector('.next-arrow');
+        const blogWrapper = document.querySelector('.blog-wrapper'); 
+
+        if (nextArrow && prevArrow && blogWrapper) {
+            nextArrow.addEventListener('click', () => {
+                // Scrolls exactly one card width widthward smoothly
+                blogWrapper.scrollBy({ left: 380, behavior: 'smooth' });
+            });
+            
+            prevArrow.addEventListener('click', () => {
+                // Scrolls backward smoothly
+                blogWrapper.scrollBy({ left: -380, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>
-
-```
