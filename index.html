@@ -809,64 +809,7 @@ footer::before { content:""; position:absolute; inset:0; pointer-events:none; ba
     if(scrollTrack) scrollTrack.scrollLeft = 0;
   }
 
-  let currentIndex = 0, visibleCards = [];
-  const carouselTrack = document.getElementById('carouselTrack');
-  const winEl   = document.getElementById('carouselWindow');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsEl  = document.getElementById('dotsContainer');
-  const countLbl= document.getElementById('countLabel');
-  const allCards= Array.from(document.querySelectorAll('.post-card'));
-  const pills   = document.querySelectorAll('.filter-pill');
-
-  function cpp() { return window.innerWidth <= 700 ? 1 : 2; }
-  function cw()  { return visibleCards.length ? visibleCards[0].getBoundingClientRect().width + 24 : 0; }
-  function pages(){ return Math.ceil(visibleCards.length / cpp()); }
-
-  function update() {
-    const p = pages();
-    currentIndex = Math.min(currentIndex, Math.max(0, p-1));
-    if(carouselTrack) carouselTrack.style.transform = 'translateX(-' + (currentIndex * cpp() * cw()) + 'px)';
-    if(prevBtn) prevBtn.disabled = currentIndex === 0;
-    if(nextBtn) nextBtn.disabled = currentIndex >= p-1;
-    const s = currentIndex*cpp()+1, e = Math.min(s+cpp()-1, visibleCards.length);
-    if(countLbl) countLbl.textContent = visibleCards.length ? (s + '–' + e + ' of ' + visibleCards.length) : '';
-    if(dotsEl) {
-      dotsEl.innerHTML = '';
-      for (let i=0; i<p; i++) {
-        const d = document.createElement('button');
-        d.className = 'dot'+(i===currentIndex?' active':'');
-        d.addEventListener('click', (function(idx){ return function(){ currentIndex=idx; update(); }; })(i));
-        dotsEl.appendChild(d);
-      }
-    }
-  }
-
-  function filter(f) {
-    currentIndex = 0;
-    allCards.forEach(function(c){ c.style.display=(f==='all'||c.dataset.category===f)?'flex':'none'; });
-    visibleCards = allCards.filter(function(c){ return c.style.display!=='none'; });
-    update();
-  }
-
-  pills.forEach(function(p){ p.addEventListener('click', function(){
-    pills.forEach(function(x){ x.classList.remove('active'); });
-    p.classList.add('active'); filter(p.dataset.filter);
-  }); });
-  if(prevBtn) prevBtn.addEventListener('click', function(){ if(currentIndex>0){currentIndex--;update();} });
-  if(nextBtn) nextBtn.addEventListener('click', function(){ if(currentIndex<pages()-1){currentIndex++;update();} });
-
-  var tx=0;
-  if(winEl) {
-    winEl.addEventListener('touchstart', function(e){tx=e.touches[0].clientX;},{passive:true});
-    winEl.addEventListener('touchend', function(e){
-      var d=tx-e.changedTouches[0].clientX;
-      if(Math.abs(d)>50){ if(d>0&&currentIndex<pages()-1){currentIndex++;update();} if(d<0&&currentIndex>0){currentIndex--;update();} }
-    });
-  }
-
-  var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){currentIndex=0;update();},150);});
-  filter('all');
+  
 </script>
 
   
