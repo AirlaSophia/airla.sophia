@@ -10,10 +10,10 @@
 html { scroll-behavior:smooth; }
 :root {
   --prussian:#101d30; --midnight:#1b2e4b; --slate:#3a536d;
-  --gold:#c9a84c; --gold-lt:#e2c370; --gold-pale:#f0dfa0;
+  --gold:#D1A86B; --gold-lt:#e2c370; --gold-pale:#f0dfa0;
   --cream:#f5eedc; --cream-dim:rgba(245,238,220,0.72); --cream-mute:rgba(245,238,220,0.45);
-  --white-soft:#eef2f8;--gold-lt:#e2c370;
---gold-pale:#f0dfa0;
+  --white-soft:#eef2f8;
+
 }
 body { font-family:"Cormorant Garamond",Georgia,serif; background:var(--prussian); color:var(--cream); overflow-x:hidden; }
 
@@ -68,7 +68,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:22px 48px; di
 .threshold-text-inner { position:relative; padding-left:24px; }
 .threshold-text-inner::before { content:""; position:absolute; left:0; top:4px; bottom:4px; width:1px; background:linear-gradient(to bottom,transparent,rgba(58,83,109,0.65) 20%,rgba(58,83,109,0.65) 80%,transparent); }
 .threshold-body { display:flex; flex-direction:column; gap:18px; }
-.threshold-body p { font-size:clamp(16px,1.5vw,18px); font-weight:300; line-height:1.90; color:var(--cream-dim); }
+.threshold-body p { font-size:clamp(16px,1.5vw,18px); font-weight:300; line-height:1.90; color:var(--gold); }
 .threshold-body em { font-style:italic; color:var(--gold-lt); font-weight:400; }
 .ornament-divider { display:flex; align-items:center; justify-content:flex-start; gap:8px; margin:24px 0 20px; }
 .orn-line { flex:1; max-width:44px; height:1px; background:rgba(192,158,72,0.42); }
