@@ -792,7 +792,6 @@ footer::before { content:""; position:absolute; inset:0; pointer-events:none; ba
 
   const track = document.getElementById("scrollTrack");
   let isDown = false, startX, sl;
-  let isDown = false, startX, sl;
   track.addEventListener("mousedown", e => { isDown=true; startX=e.pageX-track.offsetLeft; sl=track.scrollLeft; });
   track.addEventListener("mouseleave", () => isDown=false);
   track.addEventListener("mouseup", () => isDown=false);
